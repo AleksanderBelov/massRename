@@ -9,11 +9,11 @@
    <children>
       <Button fx:id="selectFile" onAction="#selectFile" contentDisplay="RIGHT" layoutX="454.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Select" />
       <TextField fx:id="pathToFile" layoutX="19.0" layoutY="33.0" prefHeight="25.0" prefWidth="422.0" />
-      <TextField id="pathToDirectory" layoutX="19.0" layoutY="102.0" prefHeight="25.0" prefWidth="422.0" />
-      <Button id="selectDirectory" layoutX="454.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Select" />
+      <TextField fx:id="pathToDirectory" layoutX="19.0" layoutY="102.0" prefHeight="25.0" prefWidth="422.0" />
+      <Button id="selectDirectory" onAction="#selectDirectory"  layoutX="454.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Select" />
       <ProgressBar id="remaneProgress" layoutX="17.0" layoutY="150.0" prefHeight="18.0" prefWidth="566.0" progress="0.0" />
-      <Button id="renameStart" layoutX="19.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="422.0" text="Start" />
-      <Button id="renameStop" layoutX="454.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Stop" />
+      <Button fx:id="renameStart" onAction="#renameStart"  layoutX="19.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="422.0" text="Start" />
+      <Button fx:id="renameStop" layoutX="454.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Stop" />
       <Label layoutX="19.0" layoutY="14.0" prefHeight="17.0" prefWidth="136.0" text="Path to file" />
       <Label layoutX="19.0" layoutY="76.0" text="Path to directory" />
    </children>
