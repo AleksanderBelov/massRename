@@ -1,29 +1,58 @@
 package sample;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class Code {
 
-    private Map hashMap;
+    private Map<String, String> allClipNames;
 
-    public static boolean startRename (File listClips, File dirWithClips){
-        readListAllName(listClips);
+    public boolean startRename (File listClips, File dirWithClips) {
+        allClipNames = new HashMap<String, String>();
+        readFileToMap(listClips);
+        walkDirectory(dirWithClips);
+
+
         return true;
     }
-    private static void readListAllName(File listClips){
+
+    private void readFileToMap(File listClips){
         try{
             FileInputStream fstream = new FileInputStream(listClips);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-            String strLine;
-            while ((strLine = br.readLine()) != null){
-                System.out.println(strLine);
+            String strLineKey;
+            String strLineValye;
+            while ((strLineKey = br.readLine()) != null){
+                System.out.printf(strLineKey);
+                if ((strLineValye = br.readLine()) != null) {
+                    System.out.println(":" + strLineValye);
+                    allClipNames.put(strLineKey,strLineValye);
+                } else {
+                    allClipNames.put(strLineKey," not find name");
+                    }
             }
         }catch (IOException e){
             System.out.println("Ошибка");
         }
-
     }
+
+    private void walkDirectory(File dirWithClips) {
+        try (Stream<Path> filePathStream=Files.walk(Paths.get(dirWithClips.getPath()))) {
+            filePathStream.forEach(filePath -> {
+                if (Files.isRegularFile(filePath)) {
+    //                System.out.println(":" + filePath);
+                    System.out.println("*" + filePath.getFileName());
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
