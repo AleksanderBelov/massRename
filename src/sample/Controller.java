@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -31,6 +32,8 @@ public class Controller implements Initializable {
     @FXML
     private Button renameStop;
 
+    @FXML
+    private TabPane tabPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,19 +77,27 @@ public class Controller implements Initializable {
         Code code = new Code();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-        if (code.startRename(listClips, dirWithClips)) {
+        if (tabPane.getSelectionModel().getSelectedIndex() == 0) {
 
-            alert.setTitle("rename status");
-            alert.setHeaderText(null);
-            alert.setContentText("Done");
-            alert.showAndWait();
+            if (code.startRename(listClips, dirWithClips)) {
 
-        } else {
+                alert.setTitle("rename status");
+                alert.setHeaderText(null);
+                alert.setContentText("Done");
+                alert.showAndWait();
 
-            alert.setTitle("rename status");
-            alert.setHeaderText(null);
-            alert.setContentText("Done");
-            alert.showAndWait();
+            } else {
+
+                alert.setTitle("rename status");
+                alert.setHeaderText(null);
+                alert.setContentText("Done");
+                alert.showAndWait();
+            }
+        }
+        if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
+
+            Lib.startAggregator();
+
         }
 
     }

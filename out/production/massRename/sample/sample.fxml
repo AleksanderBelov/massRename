@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button fx:id="selectFile" onAction="#selectFile" contentDisplay="RIGHT" layoutX="454.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Select" />
-      <TextField fx:id="pathToFile" layoutX="19.0" layoutY="33.0" prefHeight="25.0" prefWidth="422.0" />
-      <TextField fx:id="pathToDirectory" layoutX="19.0" layoutY="102.0" prefHeight="25.0" prefWidth="422.0" />
-      <Button id="selectDirectory" onAction="#selectDirectory"  layoutX="454.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Select" />
-      <ProgressBar id="remaneProgress" layoutX="17.0" layoutY="150.0" prefHeight="18.0" prefWidth="566.0" progress="0.0" />
-      <Button fx:id="renameStart" onAction="#renameStart"  layoutX="19.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="422.0" text="Start" />
+      <ProgressBar id="remaneProgress" layoutX="19.0" layoutY="156.0" prefHeight="18.0" prefWidth="566.0" progress="0.0" />
+      <Button fx:id="renameStart" layoutX="19.0" layoutY="184.0" mnemonicParsing="false" onAction="#renameStart" prefHeight="25.0" prefWidth="422.0" text="Start" />
       <Button fx:id="renameStop" layoutX="454.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Stop" />
-      <Label layoutX="19.0" layoutY="14.0" prefHeight="17.0" prefWidth="136.0" text="Path to file" />
-      <Label layoutX="19.0" layoutY="76.0" text="Path to directory" />
+      <TabPane fx:id="tabPane" layoutY="-3.0" prefHeight="151.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Rename FIles">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="pathToDirectory" layoutX="20.0" layoutY="86.0" prefHeight="27.0" prefWidth="422.0" />
+                        <Button id="selectDirectory" layoutX="450.0" layoutY="86.0" mnemonicParsing="false" onAction="#selectDirectory" prefHeight="27.0" prefWidth="130.0" text="Select" />
+                        <Button fx:id="selectFile" contentDisplay="RIGHT" layoutX="450.0" layoutY="34.0" mnemonicParsing="false" onAction="#selectFile" prefHeight="27.0" prefWidth="130.0" text="Select" />
+                        <TextField fx:id="pathToFile" layoutX="18.0" layoutY="34.0" prefHeight="27.0" prefWidth="422.0" />
+                        <Label layoutX="17.0" layoutY="12.0" prefHeight="17.0" prefWidth="136.0" text="Path to file" />
+                        <Label layoutX="17.0" layoutY="69.0" text="Path to directory" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Create Base">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="515.0" layoutY="22.0" mnemonicParsing="false" text="Button" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

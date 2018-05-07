@@ -10,17 +10,12 @@ import java.io.*;
 import java.util.Map;
 
 public class Lib {
-}
 
-
-
-
-
-public class Main {
 
     private Map<String, String> allClipNames;
+    //public static void main(String[] args) {
 
-    public static void main(String[] args) {
+    public static void startAggregator(){
 
         File htmlFile = new File("/Users/sasha/Downloads/testLP.htm");
         readSingleFile(htmlFile);
