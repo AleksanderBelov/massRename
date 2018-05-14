@@ -19,13 +19,19 @@ import sample.Code;
 public class Controller implements Initializable {
     private File listClips;
     private File dirWithClips;
-
+    private File listClipsClean;
+    private File dirWithFileForCreateBase;
     @FXML
     private TextField pathToFile;
 
     @FXML
     private TextField pathToDirectory;
 
+    @FXML
+    private TextField pathToFileForCreateBase;
+
+    @FXML
+    private TextField pathToDirectoryForCreateBase;
     @FXML
     private Button renameStart;
 
@@ -35,12 +41,19 @@ public class Controller implements Initializable {
     @FXML
     private TabPane tabPane;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         renameStart.setDisable(true);
         renameStop.setDisable(true);
         // TODO (don't really need to do anything here).
+
+        tabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+       //     System.err.println("changed");
+            checkButtonStart();
+        });
+
 
     }
 
@@ -51,11 +64,15 @@ public class Controller implements Initializable {
         listClips = fileChooser.showOpenDialog(null);
         if (listClips != null){
             pathToFile.setText(listClips.getPath());
-            if (dirWithClips != null) {
-                renameStart.setDisable(false);
-            }
         }
-        System.out.println("Button Clicked!");
+        checkButtonStart();
+    }
+    public void selectFileForBase(ActionEvent event) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Resource File");
+        listClipsClean = fileChooser.showOpenDialog(null);
+        checkButtonStart();
     }
 
     public void selectDirectory(ActionEvent actionEvent) {
@@ -63,12 +80,20 @@ public class Controller implements Initializable {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("select directory");
         dirWithClips = directoryChooser.showDialog(null);
-        if (dirWithClips != null) {
-            pathToDirectory.setText(dirWithClips.getAbsolutePath());
-            if (listClips != null) {
-                renameStart.setDisable(false);
-            }
+        if (dirWithClips != null){
+            pathToDirectory.setText(dirWithClips.getPath());
         }
+        checkButtonStart();
+
+    }
+
+    public void selectDirectoryWithHtml(ActionEvent actionEvent) {
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("select directory with .html");
+        dirWithFileForCreateBase = directoryChooser.showDialog(null);
+        checkButtonStart();
+
     }
 
     public void renameStart(ActionEvent actionEvent) {
@@ -100,5 +125,18 @@ public class Controller implements Initializable {
 
         }
 
+    }
+
+    public void checkButtonStart(){
+
+        renameStart.setDisable(true);
+        if ((tabPane.getSelectionModel().getSelectedIndex() == 0) & (dirWithClips != null) & (listClips != null)) {
+            renameStart.setDisable(false);
+        } else {
+            if ((tabPane.getSelectionModel().getSelectedIndex() == 1) & (dirWithFileForCreateBase != null) & (listClipsClean != null)) {
+                renameStart.setDisable(false);
+            }
+
+        }
     }
 }

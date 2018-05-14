@@ -33,7 +33,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="515.0" layoutY="22.0" mnemonicParsing="false" text="Button" />
+                         <Button fx:id="selectFileForCreateBase" contentDisplay="RIGHT" layoutX="450.0" layoutY="34.0" mnemonicParsing="false" onAction="#selectFileForBase" prefHeight="27.0" prefWidth="130.0" text="Select" />
+                         <TextField fx:id="pathToFileForCreateBase" layoutX="18.0" layoutY="34.0" prefHeight="27.0" prefWidth="422.0" />
+                         <Button id="selectDirectoryForCreateBase" layoutX="450.0" layoutY="86.0" mnemonicParsing="false" onAction="#selectDirectoryWithHtml" prefHeight="27.0" prefWidth="130.0" text="Select" />
+                         <TextField fx:id="pathToDirectoryForCreateBase" layoutX="20.0" layoutY="86.0" prefHeight="27.0" prefWidth="422.0" />
+                         <Label layoutX="17.0" layoutY="12.0" prefHeight="17.0" prefWidth="136.0" text="Path to file" />
+                         <Label layoutX="17.0" layoutY="69.0" text="Path to directory with .html" />
                      </children></AnchorPane>
             </content>
           </Tab>
