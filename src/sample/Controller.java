@@ -13,13 +13,14 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import sample.Code;
 
 
 public class Controller implements Initializable {
     private File listClips;
     private File dirWithClips;
-    private File listClipsClean;
+    private File fileWithBase;
     private File dirWithFileForCreateBase;
     @FXML
     private TextField pathToFile;
@@ -50,7 +51,6 @@ public class Controller implements Initializable {
         // TODO (don't really need to do anything here).
 
         tabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
-       //     System.err.println("changed");
             checkButtonStart();
         });
 
@@ -62,16 +62,20 @@ public class Controller implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Resource File");
         listClips = fileChooser.showOpenDialog(null);
-        if (listClips != null){
+        if (listClips != null) {
             pathToFile.setText(listClips.getPath());
         }
         checkButtonStart();
     }
+
     public void selectFileForBase(ActionEvent event) {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Resource File");
-        listClipsClean = fileChooser.showOpenDialog(null);
+        fileWithBase = fileChooser.showOpenDialog(null);
+        if (fileWithBase != null) {
+            pathToFileForCreateBase.setText(fileWithBase.getPath());
+        }
         checkButtonStart();
     }
 
@@ -80,7 +84,7 @@ public class Controller implements Initializable {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("select directory");
         dirWithClips = directoryChooser.showDialog(null);
-        if (dirWithClips != null){
+        if (dirWithClips != null) {
             pathToDirectory.setText(dirWithClips.getPath());
         }
         checkButtonStart();
@@ -92,8 +96,11 @@ public class Controller implements Initializable {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("select directory with .html");
         dirWithFileForCreateBase = directoryChooser.showDialog(null);
+        if (dirWithFileForCreateBase != null) {
+            pathToDirectoryForCreateBase.setText(dirWithFileForCreateBase.getPath());
+            pathToFileForCreateBase.setText("report.txt");
+        }
         checkButtonStart();
-
     }
 
     public void renameStart(ActionEvent actionEvent) {
@@ -127,13 +134,13 @@ public class Controller implements Initializable {
 
     }
 
-    public void checkButtonStart(){
+    public void checkButtonStart() {
 
         renameStart.setDisable(true);
         if ((tabPane.getSelectionModel().getSelectedIndex() == 0) & (dirWithClips != null) & (listClips != null)) {
             renameStart.setDisable(false);
         } else {
-            if ((tabPane.getSelectionModel().getSelectedIndex() == 1) & (dirWithFileForCreateBase != null) & (listClipsClean != null)) {
+            if ((tabPane.getSelectionModel().getSelectedIndex() == 1) & (dirWithFileForCreateBase != null) & (fileWithBase != null)) {
                 renameStart.setDisable(false);
             }
 
