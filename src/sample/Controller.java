@@ -14,8 +14,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import sample.Code;
-
 
 public class Controller implements Initializable {
     private File listClips;
@@ -98,6 +96,7 @@ public class Controller implements Initializable {
         dirWithFileForCreateBase = directoryChooser.showDialog(null);
         if (dirWithFileForCreateBase != null) {
             pathToDirectoryForCreateBase.setText(dirWithFileForCreateBase.getPath());
+            if (pathToFileForCreateBase.getText().equals(""))
             pathToFileForCreateBase.setText("report.txt");
         }
         checkButtonStart();
@@ -128,7 +127,13 @@ public class Controller implements Initializable {
         }
         if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
 
-            Lib.startAggregator();
+           // Aggregator.startAggregator(pathToFileForCreateBase, dirWithFileForCreateBase);
+
+            Heard.startAggregator(pathToFileForCreateBase.getText(), dirWithFileForCreateBase);
+            alert.setTitle("Aggregator status");
+            alert.setHeaderText(null);
+            alert.setContentText("Done");
+            alert.showAndWait();
 
         }
 

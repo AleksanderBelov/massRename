@@ -64,5 +64,13 @@ public class Code {
 
     }
 
+    public String correctFilename(String originalFilename){
+        String correctFilename;
+        correctFilename = originalFilename.replace(" / " , ", ");
+        correctFilename = correctFilename.replace("/ " , ", ");
+        correctFilename = correctFilename.replace("/" , ", ");
+        return correctFilename;
+    }
+
 
 }
