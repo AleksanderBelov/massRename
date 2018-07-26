@@ -17,8 +17,11 @@ public class Heard {
         Aggregator aggregator = new Aggregator(pathToFileForCreateBase, dirWithFileForCreateBase);
         aggregator.start();
         aggregator.writeFile();
+    }
 
-
+    public static void startRenamer(File listClips, File dirWithClips){
+        Renamer renamer = new Renamer(listClips, dirWithClips);
+        renamer.start();
 
 
     }

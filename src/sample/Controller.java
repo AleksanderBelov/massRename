@@ -110,7 +110,15 @@ public class Controller implements Initializable {
 
         if (tabPane.getSelectionModel().getSelectedIndex() == 0) {
 
-            if (code.startRename(listClips, dirWithClips)) {
+            Heard.startRenamer(listClips,dirWithClips);
+
+            alert.setTitle("rename status");
+            alert.setHeaderText(null);
+            alert.setContentText("Done");
+            alert.showAndWait();
+
+ /*           if (code.startRename(listClips, dirWithClips)) {
+
 
                 alert.setTitle("rename status");
                 alert.setHeaderText(null);
@@ -124,6 +132,9 @@ public class Controller implements Initializable {
                 alert.setContentText("Done");
                 alert.showAndWait();
             }
+   */
+
+
         }
         if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
 
