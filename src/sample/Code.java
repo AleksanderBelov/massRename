@@ -52,8 +52,8 @@ public class Code {
             while ((strLine = br.readLine()) != null) {
                 strToMap = strLine.split(": ");
 
-//                System.out.println("key: " + strToMap[0] + " | " + "value: " + strToMap[1]); // добавить пробел после :
-                allClipNames.put(strToMap[0], strToMap[1]);
+                System.out.println("key: " + strToMap[0] + " | " + "value: " + strToMap[1]); // добавить пробел после :
+//                allClipNames.put(strToMap[0], strToMap[1]);
 
             }
         } catch (IOException e) {

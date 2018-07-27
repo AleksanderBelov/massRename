@@ -85,15 +85,19 @@ public class Aggregator {
         String fullClipName = "";
         String keyClipName = "";
         for (String subStr : words){
-            if (subStr.matches("[A-Z]+[0-9]+") || subStr.matches("#[0-9]+")){
+            if (subStr.matches("[A-z]+[0-9]+") || subStr.matches("#[0-9]+")){
                 keyClipName = subStr;
             } else {
                 fullClipName = fullClipName + subStr + " ";
             }
         }
         fullClipName = Code.correctFilename(fullClipName.substring(0,fullClipName.length() - 1));
+      //  fullClipName = fullClipName.substring(0,fullClipName.length()-1);
 
 
+        if (keyClipName.equals("")) {
+            keyClipName = "NONAME" + (int) (Math.random() * 100);
+        }
         allClipNames.put(keyClipName,fullClipName);
 
 

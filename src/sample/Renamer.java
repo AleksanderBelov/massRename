@@ -53,7 +53,9 @@ public class Renamer {
         //   System.out.println(filePath.getParent() + " - folder (NIO)");
         //   System.out.println(filePath.getFileName() + " - name (NIO)");
         fileInfo = analizeFile(filePath.getFileName().toString());
-        renameClip(filePath, fileInfo);
+
+        if (!compareClips(fileInfo))
+            renameClip(filePath, fileInfo);
      //   fileInfo.print();
 
 
@@ -139,8 +141,18 @@ public class Renamer {
 
     private boolean renameClip(Path filePath, FileInfo fi){
 
-        File file = new File(filePath.getParent().toString() + "/"+ filePath.getFileName().toString());
-        File newFile = new File(filePath.getParent().toString() + "/" + fi.getKey() + " " + fi.getName() + " (" + fi.getQuality() + ")");
+        String toDir = "/";
+        String oldName = filePath.getParent().toString() + toDir + filePath.getFileName().toString();
+        String newName = filePath.getParent().toString() + toDir + fi.getKey() + " " + fi.getName();
+
+        if (!(fi.getQuality().equals("")))
+            newName = newName + " (" + fi.getQuality() + ")";
+
+        newName = newName + "." + fi.getExension();
+
+        File file = new File(oldName);
+        File newFile = new File(newName);
+
 
         System.out.println(file.toString());
         System.out.println(newFile.toString());
